@@ -4,27 +4,32 @@
              x:Class="com.marcoelaura.shop.Views.AboutPage"
              xmlns:vm="clr-namespace:com.marcoelaura.shop.ViewModels;"
              Title="{Binding Title}">
-  <ContentPage.BindingContext>
-    <vm:AboutViewModel />
-  </ContentPage.BindingContext>
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
-    <ScrollView Grid.Row="1">
-      <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
-        <Button Margin="0,10,0,0"
-                Text="Learn more" 
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="1">
+            <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
+                <Button Margin="0,10,0,0"
+                Text="Category" 
                 Clicked="ManageCategory_Clicked"
                 BackgroundColor="{StaticResource Primary}"
                 TextColor="White"/>
-        <Button Margin="0,10,0,0"
-                Text="Learn more" 
+                <Button Margin="0,10,0,0"
+                Text="Item" 
                 Clicked="ManageItem_Clicked"
                 BackgroundColor="{StaticResource Primary}"
                 TextColor="White"/>
+                <Button Margin="0,10,0,0"
+                Text="List" 
+                Clicked="ManageList_Clicked"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"/>
             </StackLayout>
-    </ScrollView>
-  </Grid>
+        </ScrollView>
+    </Grid>
 </ContentPage>

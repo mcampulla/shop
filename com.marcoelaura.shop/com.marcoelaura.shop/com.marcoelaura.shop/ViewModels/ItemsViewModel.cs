@@ -12,33 +12,37 @@ namespace com.marcoelaura.shop.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        public ObservableRangeCollection<ShopList> Items { get; set; }
+        public ObservableRangeCollection<ShopItem> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
-        private IMobileServiceTable<ShopList> shopListTable;
+        private IMobileServiceTable<ShopItem> table;
 
         public ItemsViewModel()
         {
-            Title = "Browse";
-            Items = new ObservableRangeCollection<ShopList>();
+            Title = "Manage Items";
+            Items = new ObservableRangeCollection<ShopItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, ShopList>(this, "AddItem", async (obj, item) =>
-            {
-                var _item = item as ShopList;
+            //MessagingCenter.Unsubscribe<ItemEditPage, ShopItem>(this, "AddItem");
+            //MessagingCenter.Subscribe<ItemEditPage, ShopItem>(this, "AddItem", async (obj, item) =>
+            //{
+            //    var _item = item as ShopItem;
 
-                shopListTable = client.GetTable<ShopList>();
-                try
-                {
-                    await shopListTable.InsertAsync(_item);
-                }
-                catch (Exception ex)
-                {
-                    string s = ex.Message;
-                }
+            //    table = client.GetTable<ShopItem>();
+            //    try
+            //    {
+            //        if (item.Id == null)
+            //            await table.InsertAsync(_item);
+            //        else
+            //            await table.UpdateAsync(_item);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        string s = ex.Message;
+            //    }
                                 
-                Items.Add(_item);
-                //await DataStore.AddItemAsync(_item);
-            });
+            //    if (item.Id == null)
+            //        Items.Add(_item);
+            //});
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -50,10 +54,8 @@ namespace com.marcoelaura.shop.ViewModels
 
             try
             {
-                var items = await client.GetTable<ShopList>().ToListAsync();
-
+                var items = await client.GetTable<ShopItem>().ToListAsync();
                 Items.Clear();
-                //var items = await DataStore.GetItemsAsync(true);
                 Items.ReplaceRange(items);
             }
             catch (Exception ex)

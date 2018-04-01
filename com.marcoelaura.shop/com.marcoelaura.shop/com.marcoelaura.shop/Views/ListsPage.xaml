@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="com.marcoelaura.shop.Views.ItemsPage"
+             x:Class="com.marcoelaura.shop.Views.ListsPage"
               Title="{Binding Title}"
              x:Name="BrowseItemsPage">
     <ContentPage.ToolbarItems>
@@ -27,7 +27,7 @@
                        Style="{DynamicResource ListItemTextStyle}"
                        FontSize="16"/>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Category.Title}"
+                                    <Label Text="{Binding ListDate}"
                        LineBreakMode="NoWrap"
                        Style="{DynamicResource ListItemDetailTextStyle}"
                        FontSize="13"/>

@@ -7,29 +7,24 @@ using Xamarin.Forms;
 
 namespace com.marcoelaura.shop.Views
 {
-    public partial class ItemsPage : ContentPage
+    public partial class CategoriesPage : ContentPage
     {
-        ItemsViewModel viewModel;
+        CategoriesViewModel viewModel;
 
-        public ItemsPage()
+        public CategoriesPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
-
-            //MessagingCenter.Subscribe<MessagingCenterAlert>(this, "Alert", (sender) => {
-            //    // do something whenever the "Hi" message is sent
-            //    DisplayAlert("title", sender.Message, "ok");
-            //});
+            BindingContext = viewModel = new CategoriesViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as ShopItem;
+            var item = args.SelectedItem as ShopCategory;
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemEditPage(new ItemEditViewModel(item)));
+            await Navigation.PushAsync(new CategoryEditPage(new CategoryEditViewModel(item)));
 
             // Manually deselect item
             ItemsListView.SelectedItem = null;
@@ -37,7 +32,7 @@ namespace com.marcoelaura.shop.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ItemEditPage());
+            await Navigation.PushAsync(new CategoryEditPage());
         }
 
         protected override void OnAppearing()

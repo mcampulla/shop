@@ -4,21 +4,26 @@ using Xamarin.Forms;
 
 namespace com.marcoelaura.shop.Views
 {
-  public partial class AboutPage : ContentPage
-  {
-    public AboutPage()
+    public partial class AboutPage : ContentPage
     {
-      InitializeComponent();
-    }
+        public AboutPage()
+        {
+            InitializeComponent();
+        }
 
         async void ManageItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewItemPage());
+            await Navigation.PushAsync(new ItemsPage());
         }
 
         async void ManageCategory_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewItemPage());
+            await Navigation.PushAsync(new CategoriesPage());
+        }
+
+        async void ManageList_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ListsPage());
         }
     }
 }
