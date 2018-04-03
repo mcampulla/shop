@@ -6,6 +6,11 @@ namespace com.marcoelaura.shop.api.DataObjects
 {
     public class ShopListItem : EntityData
     {
+        public string ShopListId { get; set; }
+
+        [ForeignKey("ShopListId")]
+        public ShopList ShopList { get; set; }
+
         public string ShopItemId { get; set; }
 
         [ForeignKey("ShopItemId")]
