@@ -1,4 +1,5 @@
 ﻿
+using com.marcoelaura.shop.Models;
 using com.marcoelaura.shop.ViewModels;
 using System;
 using Xamarin.Forms;
@@ -30,6 +31,21 @@ namespace com.marcoelaura.shop.Views
         {
             MessagingCenter.Send(this, "AddItem", viewModel.Item);
             await Navigation.PopToRootAsync();
+        }
+
+        async void ManageList_Clicked(object sender, EventArgs e)
+        {
+            //await Navigation.PushAsync(new ListsPage());
+        }
+
+        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            var item = args.SelectedItem as ShopListItem;
+            if (item == null)
+                return;
+                        
+            // Manually deselect item
+            ItemsListView.SelectedItem = null;
         }
     }
 }

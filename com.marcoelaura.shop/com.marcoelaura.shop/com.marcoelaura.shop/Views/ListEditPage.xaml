@@ -7,11 +7,55 @@
         <ToolbarItem Text="Save" Clicked="Save_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout Spacing="20" Padding="15">
-            <Label Text="Title" FontSize="Medium" />
-            <Entry Text="{Binding Item.Title}" FontSize="Small" />
-            <Label Text="ListDate" FontSize="Medium" />
-            <Entry Text="{Binding Item.ListDate}" FontSize="Small" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                        <Label Text="Title" VerticalTextAlignment="Center"  ></Label>
+                        <Entry Text="{Binding Item.Title}" Grid.Column="1" />
+                        <Label Text="Date" VerticalTextAlignment="Center" Grid.Column="0" Grid.Row="1" ></Label>
+                        <DatePicker MinimumDate="01/01/2018" Date="{Binding Item.ListDate}" Grid.Column="1" Grid.Row="1" />
+                        <Button Text="List" Clicked="ManageList_Clicked" BackgroundColor="{StaticResource Primary}"
+                                TextColor="White" Grid.ColumnSpan="2" Grid.Row="2"/>
+                </Grid>
+                <!--<TableView HasUnevenRows="True">
+                    <TableRoot>
+                        <TableSection Title="Header">
+                        </TableSection>
+                        <TableSection Title="Items">
+                            <ViewCell >
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>-->
+                <ListView x:Name="ItemsListView"
+				ItemsSource="{Binding Items}"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+				ItemSelected="OnItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding ShopItem.Title}" FontSize="10"/>
+                                    <Label Text="{Binding Quantity}" FontSize="10"/>
+                                    <Stepper Minimum="0" Increment="1" Value="{Binding Quantity, Mode=TwoWay}" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -11,6 +11,8 @@ namespace com.marcoelaura.shop.api.DataObjects
 
         public DateTime ListDate { get; set; }
 
+        public bool Completed { get; set; }
+
         public ICollection<ShopListItem> Items { get; set; }
     }
 }

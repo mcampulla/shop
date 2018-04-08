@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -6,6 +7,8 @@ using com.marcoelaura.shop.Helpers;
 using com.marcoelaura.shop.Models;
 using com.marcoelaura.shop.Views;
 using Microsoft.WindowsAzure.MobileServices;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 
 namespace com.marcoelaura.shop.ViewModels
@@ -55,6 +58,19 @@ namespace com.marcoelaura.shop.ViewModels
 
             try
             {
+                //IMobileServiceTable table = client.GetTable("ShopList");
+                //JToken untypedItems = await table.ReadAsync("$expand=Items");
+                //var a = JsonConvert.DeserializeObject<ShopList>(untypedItems.First.ToString());
+                //$expand = ShopItem,ShopList &$filter = ShopListId eq '23214d09a38a42feaf3f2c71c1d81191'
+
+                //var test = await client.GetTable<ShopListItem>()
+                //    //.ReadAsync("$expand=ShopItem,ShopList&$filter=ShopListId eq '23214d09a38a42feaf3f2c71c1d81191'");
+                //.ReadAsync("expand=ShopItem,ShopList");
+                //.WithParameters(new Dictionary<string, string> { { "expand", "Items" },
+                //    { "$filter", "ShopListId eq '23214d09a38a42feaf3f2c71c1d81191'"}
+                //})
+                //.ToListAsync();
+
                 var items = await client.GetTable<ShopList>().ToListAsync();
                 Items.Clear();
                 Items.ReplaceRange(items);

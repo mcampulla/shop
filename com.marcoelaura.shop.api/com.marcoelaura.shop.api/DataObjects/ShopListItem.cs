@@ -18,6 +18,6 @@ namespace com.marcoelaura.shop.api.DataObjects
 
         public int Quantity { get; set; }
 
-        public bool Complete { get; set; }
+        public bool Completed { get; set; }
     }
 }
